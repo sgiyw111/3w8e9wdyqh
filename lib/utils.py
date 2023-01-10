@@ -78,22 +78,16 @@ def send_webhook(url, **kwargs):
     finally:
         shutdown_socket(sock)
 def make_embed(group_info, date):
-    funds = requests.get(f'https://economy.roblox.com/v1/groups/{group_info["id"]}/currency')
-    if "robux" in funds.text:
-       funds = funds.json()["robux"]
-    else:
-       funds = "N/A"
     return dict(
-        title="☆ New Group Found! ☆", color=0xF23434,
+        title="Found claimable group", color=3447003,
         url=f"https://www.roblox.com/groups/{group_info['id']}",
           fields=[
             dict(name="Group ID", value=group_info["id"]),
             dict(name="Group Name", value=group_info["name"]),
-            dict(name="Group Members", value=group_info["memberCount"]),
-            dict(name="Funds", value=requests.get("").j)
+            dict(name="Group Members", value=group_info["memberCount"])
         ],
         footer=dict(
-            text='BloxTools | .gg/FzYb9zG6q3'
+            text='ⓒ Tokyo Club Finder | discord.gg/frv•'
         ),
         timestamp=date.isoformat()
     )
